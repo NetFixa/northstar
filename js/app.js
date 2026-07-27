@@ -86,7 +86,7 @@ function showRandomSite(){
     modalCategory.textContent = selectedSite.category;
     modalTime.textContent = "⏱️ " + selectedSite.time;
 
-    modal.classList.remove("hidden");
+    modal.classList.add("show");
 
 }
 
@@ -94,7 +94,7 @@ surpriseButton.onclick = showRandomSite;
 
 closeModal.onclick = () => {
 
-    modal.classList.add("hidden");
+    modal.classList.remove("show");
 
 };
 
