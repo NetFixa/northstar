@@ -66,16 +66,45 @@ const surpriseSites = [
 
 const surpriseButton = document.getElementById("surprise-btn");
 
-surpriseButton.addEventListener("click", () => {
+const modal = document.getElementById("discovery-modal");
+const closeModal = document.getElementById("close-modal");
 
-    const site = surpriseSites[
-        Math.floor(Math.random() * surpriseSites.length)
-    ];
+const modalTitle = document.getElementById("modal-title");
+const modalDescription = document.getElementById("modal-description");
+const modalCategory = document.getElementById("modal-category");
+const modalTime = document.getElementById("modal-time");
 
-    const confirmOpen = confirm(
-        `🌟 Hoje a tua descoberta é:\n\n${site.name}\n\nQueres abrir este site?`
-    );
+let selectedSite = null;
 
+function showRandomSite(){
+
+    selectedSite =
+    surpriseSites[Math.floor(Math.random()*surpriseSites.length)];
+
+    modalTitle.textContent = selectedSite.name;
+    modalDescription.textContent = selectedSite.description;
+    modalCategory.textContent = selectedSite.category;
+    modalTime.textContent = "⏱️ " + selectedSite.time;
+
+    modal.classList.remove("hidden");
+
+}
+
+surpriseButton.onclick = showRandomSite;
+
+closeModal.onclick = () => {
+
+    modal.classList.add("hidden");
+
+};
+
+document.getElementById("new-site").onclick = showRandomSite;
+
+document.getElementById("open-site").onclick = () => {
+
+    window.open(selectedSite.url,"_blank");
+
+};
     if(confirmOpen){
         window.open(site.url, "_blank");
     }
